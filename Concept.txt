@@ -1,0 +1,132 @@
+650710572 พิชญา พิมพ์มหาศิริ
+
+ใช้โค้ดภาษา Java ในการอธิบาย
+
+II. ทำความเข้าใจส่วนประกอบของโค้ดเปรียบเทียบกับ concept ของ OOP ต่อไปนี้ โดยยกตัวอย่างส่วนประกอบของโค้ดประกอบการอธิบาย
+
+• Class คือ ส่วนพิมพ์เขียวของโค้ด ใช้กำหนดโครงสร้าง, พฤติกรรมของวัตถุ และสร้างวัตถุ
+
+ซึ่งนี่คือตัวอย่างจากโค้ด:
+class Animal {
+    public Animal() {
+        System.out.println("create animal");
+    }
+    void sound() {
+        System.out.println("animal makes a sound");
+    }
+    protected void finalize() throws Throwable {
+        System.out.println("delete animal");
+    }
+}
+โครงสร้างของคลาส Animal ประกอบด้วย
+- คอนสตรัคเตอร์ชื่อ Animal()
+- มี 2 เมธอดหรือพฤติกรรม ชื่อ sound() ไม่มีการคืนค่า ใช้พิมพ์เสียงร้องของสัตว์ และชื่อ finalize() ไม่มีการคืนค่า ใช้จัดการทรัพยากรที่เหลือเมื่อเกิดขยะ
+
+• Object, instance ถูกสร้างขึ้นเพื่อจำลองการทำงานของวัตถุในคลาส จะเก็บ attribute และ behavior
+
+ซึ่งนี่คือตัวอย่างจากโค้ด
+    // สร้างวัตถุจากคลาส Animal, Dog และ Cat ตามลำดับ
+    Animal a = new Animal();
+    Dog d = new Dog();
+    Cat c = new Cat();
+
+    // เรียกใช้พฤติกรรมของวัตถุ a, d และ c ตามลำดับ
+    a.sound();
+    d.sound();
+    c.sound();
+
+• Subclass, derived class คือ คลาสใหม่ที่ได้รับการสืบทอด attribute และ behavior มาจากคลาสเดิม สามารถเพิ่มหรือเปลี่ยนแปลงทั้งสองอย่างได้
+
+ซึ่งนี่คือตัวอย่างจากโค้ด
+class Cat extends Animal {
+    public Cat() {
+        System.out.println("cat");
+    }
+    @Override
+    void sound() {
+        System.out.println("cat meows");
+    }
+    protected void finalize() throws Throwable {
+        System.out.println("delete cat");
+    }
+}
+คลาส Cat สืบทอดมาจากคลาส Animal ซึ่งมีการ override behavior ที่ชื่อ sound() มาจากคลาส Animal และเปลี่ยนแปลงการทำงานภายใน
+
+• Message ใช้ในการรับส่งติดต่อกันระหว่างวัตถุแต่ละตัว ด้วยการใช้ . ในการติดต่อ เมื่อวัตถุได้รับ message จะไป execute เมธอดนั้น ๆ
+
+ซึ่งนี่คือตัวอย่างจากโค้ด
+    a.sound();
+    d.sound();
+    c.sound();
+วัตถุ a, d และ c ได้รับ message และไป execute ที่เมธอด sound() ตามลำดับ
+
+• Inheritance คือ การสืบทอดคุณสมบัติ โดยการสร้างคลาสใหม่จากคลาสที่ถูกสร้างและใช้งานอยู่แล้ว มาเปลี่ยนแปลงหน้าที่ใหม่
+คลาสเดิมที่ถูกสร้างขึ้นมาอยู่แล้ว และยังเรียกใช้งานได้เหมือนเดิม เรียกว่า superclass หรือคลาสแม่
+คลาสใหม่ที่ได้สมาชิกและพฤติกรรมของคลาสเดิมมา เรียกว่า subclass หรือคลาสลูก
+
+ซึ่งนี่คือตัวอย่างจากโค้ด
+class Animal {
+    public Animal() {
+        System.out.println("create animal");
+    }
+    void sound() {
+        System.out.println("animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    public Dog() {
+        System.out.println("dog");
+    }
+    @Override
+    void sound() {
+        System.out.println("dog barks");
+    }
+}
+คลาส Dog สืบทอดมาจากคลาส Animal สามารถใช้พฤติกรรมชื่อเดียวกับคลาสแม่ได้นั่นคือ sound() และเปลี่ยนการทำงานจากพิมพ์ animals makes a sound เป็น dog barks เพื่อให้ตรงตามความเหมาะสมของคลาสนั้น ๆ
+
+• Polymorphism คือ การทำให้วัตถุจากคลาสลูกที่สืบทอดจากคลาสแม่สามารถใช้งานเมธอดเดียวกันได้ หรือก็คือใช้ชื่อเมธอดเดียวกัน แต่การทำงานต่างกัน
+
+ซึ่งนี่คือตัวอย่างจากโค้ด
+// จากคลาส Animal
+void sound() {
+        System.out.println("animal makes a sound");
+}
+
+// จากคลาส Dog
+void sound() {
+        System.out.println("dog barks");
+}
+จะเห็นว่าชื่อเมธอดเหมือนกันคือ sound() แต่การทำงานให้พิมพ์ข้อความออกมาต่างกัน
+___________________________________________________________________
+
+III. abstract class คืออะไร ในตัวอย่างข้อ I ที่ให้ class ใดคือ abstract class และมีหลักการสร้างอย่างไร
+
+abstract class คือ คลาสที่ประกาศ attribute และ behavior ไว้ปกติ แต่จะไม่สามารถสร้างวัตถุของคลาสได้
+abstract คือ เมธอดที่ไม่มีการเขียนการทำงานใด ๆ ภายใน แต่จะต้องถูก override ในคลาสลูก
+
+จากตัวอย่างโค้ดในภาษา Java คลาส Animal สามารถทำให้เป็น abstract class ได้ โดยเปลี่ยนโค้ดดังนี้
+abstract class Animal {
+    public Animal() {
+        System.out.println("create animal");
+    }
+    abstract void sound(); // เปลี่ยนให้เป็น abstract method ซึ่งต้องถูก override ในคลาสลูก
+}
+
+class Dog extends Animal {
+    public Dog() {
+        System.out.println("dog");
+    }
+    @Override
+    void sound() {
+        System.out.println("dog barks");
+    }
+}
+และใน main() จะไม่สามารถสร้างวัตถุของคลาส Animal ได้
+    // Animal a = new Animal(); สร้างวัตถุไม่ได้เนื่องจากคลาส Animal กลายเป็น abstract class
+    Dog d = new Dog();
+    Cat c = new Cat();
+
+    // a.sound(); ไม่สามารถเรียกใช้วัตถุ a ได้
+    d.sound();
+    c.sound();
