@@ -1,1 +1,3 @@
-# oop
+## OOP Different
+ส่วนหนึ่งของวิชา 517321 Principles of Programming Languages
+ตัวอย่างโค้ดในการอธิบายความแตกต่างระหว่างภาษา Java, C++ และ Python
